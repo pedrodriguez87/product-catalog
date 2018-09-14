@@ -12,13 +12,11 @@ public class ProductCatalog {
 
         List<Product> products = new ArrayList<Product>(); //Creates an empty list
 
-
         while (true) {
 
             System.out.print("What do you want to do? ");
             String line = input.nextLine();
 
-            System.out.println("You want to: " + line);
 
             if (line.equals("exit")){
                 break;
@@ -37,16 +35,20 @@ public class ProductCatalog {
                 int units = Integer.parseInt(input.nextLine());
 
                 Product libro = new Product(name, price, units);
+
+                products.add(libro);
+
                 System.out.println(libro);
             }
 
             if (line.equals("list")){
 
+                for (Product product : products){
+                    System.out.println(product);
+                }
 
             }
 
-
-            System.out.println("Action done");
         }
     }
 }
