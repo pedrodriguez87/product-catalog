@@ -1,66 +1,52 @@
 package tech.bts.productcatalog;
 
-import com.google.gson.Gson;
-
-import java.io.PrintWriter;
 import java.util.*;
+
+import java.util.Scanner;
 
 public class ProductCatalog {
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
 
-        // CSV - comma separated values
-        // a,a,a,a,a,a
+        Scanner input = new Scanner(System.in); // scanner can read from keyboard
 
-        Product p1 = new Product("iPhone X", 1000, 50);
-        Product p2 = new Product("Macbook Pro", 1500, 30);
-        Product p3 = new Product("Mouse" , 30, 100);
-
-        List<Product> products = new ArrayList<Product>();
-        products.add(p1);
-        products.add(p2);
-        products.add(p3);
-
-        writeJSON(products);
+        List<Product> products = new ArrayList<Product>(); //Creates an empty list
 
 
-        System.out.println("File written");
-    }
+        while (true) {
 
-    public static void writeJSON(List<Product> products) throws Exception {
+            System.out.print("What do you want to do? ");
+            String line = input.nextLine();
 
-        Gson gson = new Gson();
-        String json = gson.toJson(products);
+            System.out.println("You want to: " + line);
 
-        System.out.println(json);
+            if (line.equals("exit")){
+                break;
 
-        PrintWriter writer = new PrintWriter("products.json");
+            }
 
-        writer.println(json);
+            if (line.equals("add")){
 
-        writer.close();
+                System.out.print("Product name? ");
+                String name = input.nextLine();
 
-    }
+                System.out.print("Price? ");
+                double price = Double.parseDouble(input.nextLine());
 
-    public static void writeCSV(List<Product> products) throws Exception {
+                System.out.print("Units? ");
+                int units = Integer.parseInt(input.nextLine());
 
-        PrintWriter writer = new PrintWriter("products.csv");
+                Product libro = new Product(name, price, units);
+                System.out.println(libro);
+            }
 
-        // writing
-        // Name,Price,Units
-        // iPhone X,1000,50
-        // Macbook Pro,1500,30
+            if (line.equals("list")){
 
-        writer.println("Name,Price,Units");
 
-        for (int i = 0; i < products.size(); i++){
-            Product product = products.get(i);
-            writer.println(product.name + "," + product.price + "," + product.unitsInStock);
+            }
 
+
+            System.out.println("Action done");
         }
-
-
-        writer.close();
     }
 }
-
