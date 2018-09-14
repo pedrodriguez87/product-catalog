@@ -21,9 +21,7 @@ public class ProductCatalog {
             if (line.equals("exit")){
                 break;
 
-            }
-
-            if (line.equals("add")){
+            }else if (line.equals("add")){
 
                 System.out.print("Product name? ");
                 String name = input.nextLine();
@@ -39,9 +37,8 @@ public class ProductCatalog {
                 products.add(libro);
 
                 System.out.println(libro);
-            }
 
-            if (line.equals("list")){
+            }else if (line.equals("list")){
 
                 for (Product product : products){
                     System.out.println(product);
